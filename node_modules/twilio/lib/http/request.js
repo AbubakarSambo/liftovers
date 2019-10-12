@@ -11,6 +11,7 @@ var Request = function(opts) {
   this.params = opts.params || this.ANY;
   this.data = opts.data || this.ANY;
   this.headers = opts.headers || this.ANY;
+  this.ca = opts.ca;
 };
 
 Request.prototype.ANY = '*';
@@ -44,8 +45,8 @@ Request.prototype.toString = function() {
   var params = '';
   if (this.params && this.params !== this.ANY) {
     params = '?' + _.join(_.chain(_.keys(this.params))
-        .map(function(key) { return key + '=' + this.params[key]; }.bind(this))
-        .value(), '&');
+      .map(function(key) { return key + '=' + this.params[key]; }.bind(this))
+      .value(), '&');
   }
 
   var data = '';

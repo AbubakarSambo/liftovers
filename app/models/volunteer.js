@@ -1,12 +1,17 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
+const mongoosePaginate = require("mongoose-paginate-v2");
 
-var VolunteerSchema = mongoose.Schema({
+var VolunteerSchema = mongoose.Schema(
+  {
     name: String,
     phone: String,
     postalCode: String,
     availability: Object
-}, {
+  },
+  {
     timestamps: true
-});
+  }
+);
 
-module.exports = mongoose.model('Volunteer', VolunteerSchema);
+VolunteerSchema.plugin(mongoosePaginate);
+module.exports = mongoose.model("Volunteer", VolunteerSchema);
